@@ -1,7 +1,8 @@
 /**
  * 
  */
-
+var userProfile=null;
+var userJSON=null;
 function processXHR(parms,url) {
 	
 	var isSynchronous = false;
@@ -16,15 +17,25 @@ function processXHR(parms,url) {
 		if (request.readyState == 4) {
 			console.log("Successful Request");
 			var responseText = request.responseText;
-			connections=responseText;
-			if(connections!=null)
+			
+			if(url=="/fetchConnections.do?")
+			{	connections=responseText;
+				if(connections!=null)
 				{
-					jsonData=(new X2JS()).xml_str2json(connections).connections;
+					jsonData=(new X2JS()).xml_str2json(connections).connections;	
 					console.log("data fetched");
 					if(jsonData.person.length>0)
 						plotNodes();
 				}
-
+			
+			}
+			if(url=="/fetchPeople.do?")
+				{
+				userProfile=responseText;
+				userJSON=(new X2JS()).xml_str2json(userProfile);
+				document.getElementById("userProfile").innerHTML="Name:"+userJSON.person["first-name"]+" "+userJSON.person["last-name"]+"<br>"+userJSON.person["headline"];
+				}
+			
 			}
 		}
 			request.open('POST', url, true);
@@ -39,8 +50,15 @@ function processXHR(parms,url) {
 			params="clientId="+getClientInfo();
 			processXHR(params,"/fetchConnections.do?");
 			
-		
 		}
+		function fetchLoginProfile()
+		{
+			params="clientId="+getClientInfo();
+			processXHR(params,"/fetchPeople.do?");
+			
+			
+		}
+		
 		
 		function getClientInfo()
 		{
@@ -69,6 +87,10 @@ function processXHR(parms,url) {
 		function loadLocalData()
 		{
 				jsonData=(new X2JS()).xml_str2json(localStorage.getItem("connections")).connections
+		}
+		function clearLocalData()
+		{
+			localStorage.removeItem("SocialNetworkMapperId");
 		}
 		
 		

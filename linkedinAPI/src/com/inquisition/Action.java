@@ -55,6 +55,8 @@ public class Action {
 			logData("code ::"+code);
 			logData("state ::"+state);
 			String token=linHelper.getToken(code,state);
+			LinkedInService linService = new  LinkedInService();
+			linService.getProfile(state, token);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -156,6 +158,7 @@ public class Action {
 	
 	public static void logData(String info)
 	{
+		System.out.println("###############Logger###################");
 		System.out.println(info);
 	}
 

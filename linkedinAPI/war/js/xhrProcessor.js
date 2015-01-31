@@ -27,8 +27,8 @@ function processXHR(parms,url) {
 					if(jsonData.person.length>0)
 						plotNodes();
 				}
-			
 			}
+			
 			if(url=="/fetchPeople.do?")
 				{
 				userProfile=responseText;

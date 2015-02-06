@@ -44,7 +44,6 @@ function processXHR(parms,url) {
 			
 			request.send(parms);
 		}
-		
 		function fetchXHRData()
 		{
 			params="clientId="+getClientInfo();
@@ -55,10 +54,7 @@ function processXHR(parms,url) {
 		{
 			params="clientId="+getClientInfo();
 			processXHR(params,"/fetchPeople.do?");
-			
-			
 		}
-		
 		
 		function getClientInfo()
 		{

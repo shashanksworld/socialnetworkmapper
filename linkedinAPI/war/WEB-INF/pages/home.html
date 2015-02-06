@@ -9,6 +9,7 @@
 	<script src="https://s3-ap-southeast-1.amazonaws.com/shashanksworld/js/sigmaplotter.js"> </script>
 	<script src="https://s3-ap-southeast-1.amazonaws.com/shashanksworld/js/xhrProcessor.js"> </script>
 	<script src="https://s3-ap-southeast-1.amazonaws.com/shashanksworld/js/xml2json.min.js"> </script>
+	<link rel="stylesheet" type="text/css" href="http://s3-ap-southeast-1.amazonaws.com/shashanksworld/css/style.css">
 	
 	<script>
 		var connections;
@@ -22,22 +23,26 @@
 
 	</script>
 	<style type="text/css">
-  #container {
-    max-width: 750px;
-    height: 750px;
-    margin: auto;
-    background-color:black;
-  }
+  
 </style>
 	
 </head>
 <body>
-	<div>
-	<a href="#" onclick="fetchXHRData()">Fetch Connections</a>			
+<div id="banner" style="width:100%"><h3>Social Network Mapper</h3></div>
+	<div id="pageBody" style="width:100%">
+		<div id="loginDetails" class="rightSideBar">
+		<div id="_linkFetchConnections" class="rightSideBar"><a href="#" onclick="fetchXHRData()">Fetch Connections</a>			
+		</div>
+		<span class="rightSideBar">This is a sample text from browser</span>
+		
+		<div id="userProfile">
+		</div>
+		</div>
+		<div id="container" >
+		</div>
+		
 	</div>
-	<div id="userProfile">
-	</div>
-	<div id="container"></div>
+</div>	
 
 </body>
 </html>

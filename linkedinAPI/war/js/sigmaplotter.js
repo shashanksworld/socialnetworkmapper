@@ -3,8 +3,6 @@
  * version:1.1 
  */
 
- 
-
 function createSignmaContainer()
 {
 var s= new sigma('container');
@@ -25,7 +23,7 @@ function plotNodes()
 				   // Display attributes:
 				   x: 0+ getX(connArray[i]),
 				   y: 0+ getY(connArray[i]),
-				   size: 1,
+				   size: getNodeSize(connArray[i]),
 				   color:'#'+Math.floor(Math.random()*16777215).toString(16)
 				 })
 			
@@ -37,7 +35,6 @@ function plotNodes()
 function getX(node)
 {
 	var num=parseInt(node["num-connections"]);
-	console.log(num);
 	if(isNaN(num))
 		return 500;
 	if(num>450)
@@ -57,15 +54,16 @@ function getX(node)
 function getY(node)
 {
 	var num=parseInt(node["num-connections"]);
-	console.log(num);
 	if(isNaN(num))
-		return 500;
+		{console.log("NAN with::"+num+"::"+node["num-connections"]);
+			return 500;
+		}
 
 		if(num>450)
 		{
 			return genRandom(0,100);
 		}
-		else if(num>250 && num<400)
+		else if(num>250 && num<449)
 			return genRandom(100,150);
 		else if(num>100 && num<250)
 			return genRandom(150,250);
@@ -75,9 +73,27 @@ function getY(node)
 			return genRandom(400,500);
 			
 		}
+function getNodeSize(node)
+{
+	var num=parseInt(node["num-connections"]);
+	if(isNaN(num))
+		return 0;
+
+		if(num>499)
+		{
+			return 3;
+		}
+		else if(num>250 && num<499)
+		{
+			return 2;
+		}
+		else if(num<249)
+		{
+			return 1;
+		}	
+}
 
 function genRandom(start,end)
 { var rand=Math.floor((Math.random() * end) + start);
 return rand+2;
 }
-

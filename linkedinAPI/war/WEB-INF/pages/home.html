@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:og="http://ogp.me/ns#">
 <head>
-<meta charset="UTF-8">
+<!-- <meta charset="UTF-8">
+<meta property="og:title" content="SocialNetworkMapper" />
+<meta property="og:type" content="graph" />
+<meta property="og:url" content="http://socialnetworkmapper.appspot.com" />
+<meta property="og:description" content="One Identity for Social Network" /> -->
+
+
 <title>Social Network Mapper</title>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="/sigma-v1.0.3/sigma.min.js"> </script>
 	<script src="/sigma-v1.0.3/plugins/sigma.parsers.json.min.js"></script>
+	<script src="/sigma-v1.0.3/plugins/sigma.parsers.gefx.js"></script>
 	<script src="https://s3-ap-southeast-1.amazonaws.com/shashanksworld/js/sigmaplotter.js"> </script>
+	<!-- <script src="/js/sigmaplotter.js"> </script> -->
 	<script src="https://s3-ap-southeast-1.amazonaws.com/shashanksworld/js/xhrProcessor.js"> </script>
 	<script src="https://s3-ap-southeast-1.amazonaws.com/shashanksworld/js/xml2json.min.js"> </script>
 	<link rel="stylesheet" type="text/css" href="http://s3-ap-southeast-1.amazonaws.com/shashanksworld/css/style.css">
@@ -14,13 +23,12 @@
 	<script>
 		var connections;
 		var jsonData;
-		
 		$(document).ready(function(){ 
 			
 				fetchLoginProfile();			
 			
 		}) 
-
+		
 	</script>
 	<style type="text/css">
   
@@ -31,12 +39,14 @@
 <div id="banner" style="width:100%"><h3>Social Network Mapper</h3></div>
 	<div id="pageBody" style="width:100%">
 		<div id="loginDetails" class="rightSideBar">
-		<div id="_linkFetchConnections" class="rightSideBar"><a href="#" onclick="fetchXHRData()">Fetch Connections</a>			
-		</div>
-		<span class="rightSideBar">This is a sample text from browser</span>
-		
-		<div id="userProfile">
-		</div>
+			<div id="_linkFetchConnections" class="rightSideBar"><a href="#" onclick="fetchXHRData()">Fetch Connections</a>
+						
+			</div>
+			<div id="userProfile">
+			</div>
+			
+			<div id="connections"> 
+			</div>
 		</div>
 		<div id="container" >
 		</div>

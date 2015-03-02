@@ -132,6 +132,41 @@ public class Action {
 		}
 		
 	}
+	@RequestMapping("/fetchConnectionsById.do")
+	public void fetchConnectionById(HttpServletRequest req, HttpServletResponse res)
+	{
+		String connId=req.getParameter("connectionId");
+		String clientId=req.getParameter("clientId");
+		logData("client id:"+clientId);
+		logData("connectionId:"+connId);
+		
+		try {
+			LinkedInService linService = new  LinkedInService();
+			DataStoreService dss= new DataStoreService();
+			LinkedData linData=dss.getAuthInfo(clientId);
+			
+			if(linData!=null && linData.getAccessToken()!=null)
+			{	String access=null;
+				JSONObject accesstoken= new JSONObject(linData.getAccessToken());
+				
+				String connections=linService.getConnectionsById(connId,accesstoken.get("access_token").toString(),connId);
+				res.getWriter().println(connections);
+				
+			}
+			else
+			{
+				fetchURL(req,res);
+			}
+		}  catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	
 	@RequestMapping("/fetchDSData.do")

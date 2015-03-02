@@ -43,7 +43,28 @@ public class LinkedInService {
 				headers.put("Connection","Keep-Alive");
 				headers.put("Authorization","Bearer "+token);
 				
-				String response =UrlFetchServiceUtil.httpRequest("https://api.linkedin.com/v1/people/~/connections:(headline,first-name,last-name,num-connections)?", "", "GET", "application/json", headers);
+				String response =UrlFetchServiceUtil.httpRequest("https://api.linkedin.com/v1/people/~/connections:(headline,id,first-name,last-name,num-connections)?", "", "GET", "application/json", headers);
+				return response;
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		return "";
+	}
+	public String getConnectionsById(String clientId,String token,String connId)
+	{	
+		
+		try {
+				
+				System.out.println("found auth data");
+				HashMap<String,String> headers=new HashMap<String,String>();
+				headers.put("Host", "api.linkedin.com");
+				headers.put("Connection","Keep-Alive");
+				headers.put("Authorization","Bearer "+token);
+				
+				String response =UrlFetchServiceUtil.httpRequest("https://api.linkedin.com/v1/people/id="+connId, "", "GET", "application/json", headers);
 				return response;
 		}
 		catch (Exception e) {

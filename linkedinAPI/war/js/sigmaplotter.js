@@ -1,17 +1,13 @@
-/**
- * author:shashanksworld
- * version:1.1 
- */
 
 function createSignmaContainer()
 {
-var s= new sigma('container');
-return s;
+	var s= new sigma('container');
+	return s;
 }
 
 function plotNodes()
 {
-	var obj=createSignmaContainer();
+	obj=createSignmaContainer();
 		var connArray=jsonData.person;
 	//jsonData.person.length
 	for(i=1;i<200;i++)
@@ -25,12 +21,22 @@ function plotNodes()
 				   y: 0+ getY(connArray[i]),
 				   size: getNodeSize(connArray[i]),
 				   color:'#'+Math.floor(Math.random()*16777215).toString(16)
-				 })
+				 });
 			
-			}
+			} 	
 	obj.refresh();
+	dom = document.querySelector('#container');
+	dom.addEventListener('mousemove', function(e) {
+	    mouseX = sigma.utils.getX(e);
+	    mouseY = sigma.utils.getY(e);
+	  }, false);
+	
+	obj.bind("clickNode",function(e){console.log("node clicked....."+e.data.node.label);});
 	
 }
+
+
+
 
 function getX(node)
 {
@@ -97,3 +103,29 @@ function genRandom(start,end)
 { var rand=Math.floor((Math.random() * end) + start);
 return rand+2;
 }
+
+/*
+function getMean()
+{
+	var sum=0;
+	for(j=0;j<jsonData.person.length;j++)
+	{
+		sum=sum+NaN(jsonData.person[j]["num-connections"])?0:jsonData.person[i]["num-connections"];
+	}
+	var mean=sum/(jsonData.person.length-1);
+	appendData("connections","Average No of 2nd layer connection: "+mean);
+	
+
+}
+function appendData(id,data)
+{
+	var schema=document.getElementById(id).innerHTML;
+	document.getElementById(id).innerHTML=schema+data;
+}
+
+function fillData(id,data)
+{
+	document.getElementById(id).innerHTML=data;
+
+}
+*/

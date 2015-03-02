@@ -27,8 +27,8 @@ function processXHR(parms,url) {
 					if(jsonData.person.length>0)
 						plotNodes();
 				}
-			}
 			
+			}
 			if(url=="/fetchPeople.do?")
 				{
 				userProfile=responseText;
@@ -44,6 +44,7 @@ function processXHR(parms,url) {
 			
 			request.send(parms);
 		}
+		
 		function fetchXHRData()
 		{
 			params="clientId="+getClientInfo();
@@ -54,7 +55,10 @@ function processXHR(parms,url) {
 		{
 			params="clientId="+getClientInfo();
 			processXHR(params,"/fetchPeople.do?");
+			
+			
 		}
+		
 		
 		function getClientInfo()
 		{
